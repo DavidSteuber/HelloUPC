@@ -13,6 +13,7 @@
 		635A47EA1ABEF7F700D47925 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 635A47E91ABEF7F700D47925 /* Images.xcassets */; };
 		635A47ED1ABEF7F700D47925 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 635A47EB1ABEF7F700D47925 /* LaunchScreen.xib */; };
 		635A47F91ABEF7F700D47925 /* HelloUPCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635A47F81ABEF7F700D47925 /* HelloUPCTests.swift */; };
+		63F295561ABF2BB100FDE33B /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F295551ABF2BB100FDE33B /* CameraView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		635A47F21ABEF7F700D47925 /* HelloUPCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HelloUPCTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		635A47F71ABEF7F700D47925 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		635A47F81ABEF7F700D47925 /* HelloUPCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloUPCTests.swift; sourceTree = "<group>"; };
+		63F295551ABF2BB100FDE33B /* CameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 			children = (
 				635A47E21ABEF7F700D47925 /* AppDelegate.swift */,
 				635A47E41ABEF7F700D47925 /* ViewController.swift */,
+				63F295551ABF2BB100FDE33B /* CameraView.swift */,
 				635A47E61ABEF7F700D47925 /* Main.storyboard */,
 				635A47E91ABEF7F700D47925 /* Images.xcassets */,
 				635A47EB1ABEF7F700D47925 /* LaunchScreen.xib */,
@@ -164,7 +167,6 @@
 					};
 					635A47F11ABEF7F700D47925 = {
 						CreatedOnToolsVersion = 6.3;
-						TestTargetID = 635A47DC1ABEF7F700D47925;
 					};
 				};
 			};
@@ -212,6 +214,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63F295561ABF2BB100FDE33B /* CameraView.swift in Sources */,
 				635A47E51ABEF7F700D47925 /* ViewController.swift in Sources */,
 				635A47E31ABEF7F700D47925 /* AppDelegate.swift in Sources */,
 			);
@@ -340,10 +343,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				INFOPLIST_FILE = HelloUPC/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -351,17 +361,23 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				INFOPLIST_FILE = HelloUPC/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 		635A48001ABEF7F700D47925 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -371,24 +387,23 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = HelloUPCTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloUPC.app/HelloUPC";
 			};
 			name = Debug;
 		};
 		635A48011ABEF7F700D47925 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = HelloUPCTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloUPC.app/HelloUPC";
 			};
 			name = Release;
 		};
