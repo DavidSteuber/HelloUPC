@@ -1,3 +1,8 @@
+# Ignore Project File Personal Data and .DS_Store
+.DS_Store
+*.xcodeproj/xcuserdata
+*.xcodeproj/project.xcworkspace/xcuserdata
+
 # Xcode
 #
 build/
