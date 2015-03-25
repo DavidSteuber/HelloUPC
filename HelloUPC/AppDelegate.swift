@@ -8,6 +8,17 @@
 
 import UIKit
 
+let sessionQueue: dispatch_queue_t = dispatch_queue_create("com.david-steuber.session.queue", DISPATCH_QUEUE_SERIAL)
+
+func runOnMainThread(process: dispatch_block_t) {
+    dispatch_async(dispatch_get_main_queue(), process)
+}
+
+func runOnSessionThread(process: dispatch_block_t) {
+    dispatch_async(sessionQueue, process)
+}
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

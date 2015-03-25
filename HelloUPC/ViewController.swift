@@ -9,20 +9,12 @@
 import UIKit
 import AVFoundation
 
-let sessionQueue: dispatch_queue_t = dispatch_queue_create("session queue", DISPATCH_QUEUE_SERIAL)
-
-func runOnMainThread(process: dispatch_block_t) {
-    dispatch_async(dispatch_get_main_queue(), process)
-}
-
-func runOnSessionThread(process: dispatch_block_t) {
-    dispatch_async(sessionQueue, process)
-}
-
-class ViewController: UIViewController {
+class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     @IBOutlet var cameraView: CameraView!
-    var captureSession: AVCaptureSession = AVCaptureSession()
-    var stillImageOutput: AVCaptureStillImageOutput = AVCaptureStillImageOutput()
+    let captureSession = AVCaptureSession()
+    let videoOutput = AVCaptureVideoDataOutput()
+    let metaDataOutput = AVCaptureMetadataOutput()
+    let codeRecognizer = CodeRecognizer()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,19 +43,46 @@ class ViewController: UIViewController {
         super.viewDidDisappear(animated)
     }
 
+    func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!,fromConnection connection: AVCaptureConnection!) {
+        runOnSessionThread(){
+            self.captureSession.stopRunning()
+        }
+        if metadataObjects.count > 0 {
+            runOnMainThread() {
+                for object in metadataObjects {
+                    let desc = object.description
+                    println("Object " + desc + " found")
+                }
+            }
+        } else {
+            runOnSessionThread(){
+                self.captureSession.startRunning()
+            }
+        }
+    }
+
     func configure() {
-        if let cameraDevice: AVCaptureDevice = ViewController.device() {
-            let cameraDeviceInput: AVCaptureDeviceInput = AVCaptureDeviceInput.deviceInputWithDevice(cameraDevice, error: NSErrorPointer()) as AVCaptureDeviceInput
+        if let cameraDevice = ViewController.device() {
+            let cameraDeviceInput: AVCaptureInput = AVCaptureDeviceInput.deviceInputWithDevice(cameraDevice, error: NSErrorPointer()) as AVCaptureInput
 
             if captureSession.canAddInput(cameraDeviceInput) {
                 captureSession.addInput(cameraDeviceInput)
             }
 
-            if self.captureSession.canAddOutput(stillImageOutput) {
-                //stillImageOutput.setValue(AVVideoCodecJPEG, forKey: AVVideoCodecKey)
-                captureSession.addOutput(stillImageOutput)
+            if captureSession.canAddOutput(videoOutput) {
+                captureSession.addOutput(videoOutput)
             }
 
+
+            if captureSession.canAddOutput(metaDataOutput) {
+                captureSession.addOutput(metaDataOutput)
+                metaDataOutput.metadataObjectTypes =
+                    metaDataOutput.availableMetadataObjectTypes.filter() {
+                        $0 as NSString != "face"
+                }
+                metaDataOutput.setMetadataObjectsDelegate(self, queue: sessionQueue)
+            }
+            
             captureSession.commitConfiguration()
         }
     }
@@ -81,9 +100,7 @@ class ViewController: UIViewController {
     }
 
     func checkDeviceAuthorizationStatus() {
-        let mediaType: String! = AVMediaTypeVideo
-
-        AVCaptureDevice.requestAccessForMediaType(mediaType){
+        AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo){
             if $0 {
                 runOnSessionThread(){
                     self.cameraView.configure(self.captureSession)

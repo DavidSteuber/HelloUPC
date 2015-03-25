@@ -13,6 +13,9 @@
 		635A47EA1ABEF7F700D47925 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 635A47E91ABEF7F700D47925 /* Images.xcassets */; };
 		635A47ED1ABEF7F700D47925 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 635A47EB1ABEF7F700D47925 /* LaunchScreen.xib */; };
 		635A47F91ABEF7F700D47925 /* HelloUPCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635A47F81ABEF7F700D47925 /* HelloUPCTests.swift */; };
+		63625C481AC23E280057F474 /* CodeDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63625C471AC23E280057F474 /* CodeDataView.swift */; };
+		63625C4A1AC24F260057F474 /* CodeDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63625C491AC24F260057F474 /* CodeDataViewController.swift */; };
+		636CA4DE1AC2216F00410093 /* CodeRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636CA4DD1AC2216F00410093 /* CodeRecognizer.swift */; };
 		63F295561ABF2BB100FDE33B /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F295551ABF2BB100FDE33B /* CameraView.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +40,9 @@
 		635A47F21ABEF7F700D47925 /* HelloUPCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HelloUPCTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		635A47F71ABEF7F700D47925 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		635A47F81ABEF7F700D47925 /* HelloUPCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloUPCTests.swift; sourceTree = "<group>"; };
+		63625C471AC23E280057F474 /* CodeDataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeDataView.swift; sourceTree = "<group>"; };
+		63625C491AC24F260057F474 /* CodeDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeDataViewController.swift; sourceTree = "<group>"; };
+		636CA4DD1AC2216F00410093 /* CodeRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeRecognizer.swift; sourceTree = "<group>"; };
 		63F295551ABF2BB100FDE33B /* CameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,6 +87,9 @@
 			children = (
 				635A47E21ABEF7F700D47925 /* AppDelegate.swift */,
 				635A47E41ABEF7F700D47925 /* ViewController.swift */,
+				636CA4DD1AC2216F00410093 /* CodeRecognizer.swift */,
+				63625C471AC23E280057F474 /* CodeDataView.swift */,
+				63625C491AC24F260057F474 /* CodeDataViewController.swift */,
 				63F295551ABF2BB100FDE33B /* CameraView.swift */,
 				635A47E61ABEF7F700D47925 /* Main.storyboard */,
 				635A47E91ABEF7F700D47925 /* Images.xcassets */,
@@ -216,6 +225,9 @@
 			files = (
 				63F295561ABF2BB100FDE33B /* CameraView.swift in Sources */,
 				635A47E51ABEF7F700D47925 /* ViewController.swift in Sources */,
+				636CA4DE1AC2216F00410093 /* CodeRecognizer.swift in Sources */,
+				63625C4A1AC24F260057F474 /* CodeDataViewController.swift in Sources */,
+				63625C481AC23E280057F474 /* CodeDataView.swift in Sources */,
 				635A47E31ABEF7F700D47925 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
