@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--ViewController-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="HelloUPC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="CameraView" id="vXZ-lx-hvc" userLabel="ViewController" customClass="ViewController" customModule="HelloUPC" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -22,10 +22,50 @@
                     </view>
                     <connections>
                         <outlet property="cameraView" destination="kh9-bI-dsS" id="kQJ-Dt-EN7"/>
+                        <segue destination="ke5-YR-CDs" kind="showDetail" identifier="CoreDataViewController" id="1DB-Nq-bRH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+        </scene>
+        <!--CodeDataViewController-->
+        <scene sceneID="YO9-x5-Osn">
+            <objects>
+                <viewController title="CodeDataView" modalTransitionStyle="crossDissolve" id="ke5-YR-CDs" userLabel="CodeDataViewController" customClass="CodeDataViewController" customModule="HelloUPC" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CnD-rW-Fsa"/>
+                        <viewControllerLayoutGuide type="bottom" id="fE2-UI-gkq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleAspectFill" id="Yei-QO-JoW" customClass="CodeDataView" customModule="HelloUPC" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Meta Data" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="cYg-Pc-o83">
+                                <rect key="frame" x="202" y="28" width="189" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6e1-L7-OFA">
+                                <rect key="frame" x="242" y="562" width="108" height="30"/>
+                                <accessibility key="accessibilityConfiguration" hint="Scan Again" label="Scan Again"/>
+                                <state key="normal" title="Scan Again">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="600"/>
+                    <connections>
+                        <outlet property="codeDataView" destination="Yei-QO-JoW" id="V2o-Ue-rEK"/>
+                        <outlet property="scanAgainButton" destination="6e1-L7-OFA" id="6DP-Od-MTR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="as2-JD-T1a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1214" y="389"/>
         </scene>
     </scenes>
 </document>

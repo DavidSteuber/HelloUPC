@@ -14,7 +14,6 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     let captureSession = AVCaptureSession()
     let videoOutput = AVCaptureVideoDataOutput()
     let metaDataOutput = AVCaptureMetadataOutput()
-    let codeRecognizer = CodeRecognizer()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,11 +47,14 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             self.captureSession.stopRunning()
         }
         if metadataObjects.count > 0 {
+            let object: AVMetadataMachineReadableCodeObject = metadataObjects.first as AVMetadataMachineReadableCodeObject
+            let codeRecognizer = CodeRecognizer(type: object.type, data: object.stringValue)
             runOnMainThread() {
-                for object in metadataObjects {
-                    let desc = object.description
-                    println("Object " + desc + " found")
-                }
+                let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+                appDelegate.codeRecognizer = codeRecognizer
+                println("Barcode Type: \(codeRecognizer.type)")
+                println("Barcode Data: \(codeRecognizer.data)")
+                self.performSegueWithIdentifier("CoreDataViewController", sender: self)
             }
         } else {
             runOnSessionThread(){
@@ -76,6 +78,13 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
 
             if captureSession.canAddOutput(metaDataOutput) {
                 captureSession.addOutput(metaDataOutput)
+                /*
+                runOnMainThread() {
+                    for mot in self.metaDataOutput.availableMetadataObjectTypes {
+                        println("mot: \(mot)")
+                    }
+                }
+                */
                 metaDataOutput.metadataObjectTypes =
                     metaDataOutput.availableMetadataObjectTypes.filter() {
                         $0 as NSString != "face"

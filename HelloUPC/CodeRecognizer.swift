@@ -9,5 +9,11 @@
 import Foundation
 
 class CodeRecognizer {
+    var type: String
+    var data: String
 
+    init(type: String, data: String) {
+        self.type = type
+        self.data = data
+    }
 }

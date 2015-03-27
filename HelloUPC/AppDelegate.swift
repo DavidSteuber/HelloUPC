@@ -23,6 +23,7 @@ func runOnSessionThread(process: dispatch_block_t) {
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var codeRecognizer = CodeRecognizer(type: "unknown", data: "none")
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {

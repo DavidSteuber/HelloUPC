@@ -3,13 +3,14 @@
 //  HelloUPC
 //
 //  Created by David Steuber on 3/24/15.
-//  Copyright (c) 2015 David Steuber. All rights reserved.
+//  Copyright (c) 2015 David Steuber.
 //
 
 import UIKit
 
-class CodeDataViewControllor: UIViewController {
+class CodeDataViewController: UIViewController {
     @IBOutlet var codeDataView: CodeDataView!
+    @IBOutlet var scanAgainButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
