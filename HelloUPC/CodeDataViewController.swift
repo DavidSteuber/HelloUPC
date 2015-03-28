@@ -9,7 +9,7 @@
 import UIKit
 
 class CodeDataViewController: UIViewController {
-    @IBOutlet var codeDataView: CodeDataView!
+    @IBOutlet var codeDataView: UIView!
     @IBOutlet var barcodeTypeLabel: UILabel!
     @IBOutlet var barcodeDataLabel: UILabel!
 
