@@ -52,8 +52,8 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             runOnMainThread() {
                 let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
                 appDelegate.codeRecognizer = codeRecognizer
-                println("Barcode Type: \(codeRecognizer.type)")
-                println("Barcode Data: \(codeRecognizer.data)")
+                // println("Barcode Type: \(codeRecognizer.type)")
+                // println("Barcode Data: \(codeRecognizer.data)")
                 self.performSegueWithIdentifier("CoreDataViewController", sender: self)
             }
         } else {

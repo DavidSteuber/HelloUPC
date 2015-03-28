@@ -11,6 +11,5 @@ import Foundation
 
 @IBDesignable
 class CodeDataView: UIView {
-    var barCodeType = ""
-    var barCodeData = ""
+
 }

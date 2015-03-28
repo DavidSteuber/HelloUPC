@@ -10,11 +10,15 @@ import UIKit
 
 class CodeDataViewController: UIViewController {
     @IBOutlet var codeDataView: CodeDataView!
-    @IBOutlet var scanAgainButton: UIButton!
+    @IBOutlet var barcodeTypeLabel: UILabel!
+    @IBOutlet var barcodeDataLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        barcodeTypeLabel.text = appDelegate.codeRecognizer.type
+        barcodeDataLabel.text = appDelegate.codeRecognizer.data
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,6 +34,11 @@ class CodeDataViewController: UIViewController {
     override func viewDidDisappear(animated: Bool) {
 
         super.viewDidDisappear(animated)
+    }
+
+    @IBAction func scanAgain() {
+        // println("scanAgain button pressed")
+        performSegueWithIdentifier("ViewController", sender: self)
     }
 
 }
