@@ -16,7 +16,7 @@ class CameraView: UIView {
     var previewLayer: AVCaptureVideoPreviewLayer = AVCaptureVideoPreviewLayer()
 
     func configure(captureSession: AVCaptureSession) -> Void {
-        previewLayer = AVCaptureVideoPreviewLayer.layerWithSession(captureSession) as AVCaptureVideoPreviewLayer
+        previewLayer = AVCaptureVideoPreviewLayer.layerWithSession(captureSession) as! AVCaptureVideoPreviewLayer
         previewLayer.frame = self.bounds
         previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
         self.layer.addSublayer(previewLayer)

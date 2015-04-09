@@ -47,10 +47,10 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             self.captureSession.stopRunning()
         }
         if metadataObjects.count > 0 {
-            let object: AVMetadataMachineReadableCodeObject = metadataObjects.first as AVMetadataMachineReadableCodeObject
+            let object: AVMetadataMachineReadableCodeObject = metadataObjects.first as! AVMetadataMachineReadableCodeObject
             let codeRecognizer = CodeRecognizer(type: object.type, data: object.stringValue)
             runOnMainThread() {
-                let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                 appDelegate.codeRecognizer = codeRecognizer
                 // println("Barcode Type: \(codeRecognizer.type)")
                 // println("Barcode Data: \(codeRecognizer.data)")
@@ -65,7 +65,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
 
     func configure() {
         if let cameraDevice = ViewController.device() {
-            let cameraDeviceInput: AVCaptureInput = AVCaptureDeviceInput.deviceInputWithDevice(cameraDevice, error: NSErrorPointer()) as AVCaptureInput
+            let cameraDeviceInput: AVCaptureInput = AVCaptureDeviceInput.deviceInputWithDevice(cameraDevice, error: NSErrorPointer()) as! AVCaptureInput
 
             if captureSession.canAddInput(cameraDeviceInput) {
                 captureSession.addInput(cameraDeviceInput)
@@ -87,7 +87,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
                 */
                 metaDataOutput.metadataObjectTypes =
                     metaDataOutput.availableMetadataObjectTypes.filter() {
-                        $0 as NSString != "face"
+                        $0 as! NSString != "face"
                 }
                 metaDataOutput.setMetadataObjectsDelegate(self, queue: sessionQueue)
             }
@@ -99,7 +99,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     class func device() -> AVCaptureDevice? {
         if let devices = AVCaptureDevice.devicesWithMediaType(AVMediaTypeVideo) as NSArray! {
             if devices.count > 0 {
-                let captureDevice: AVCaptureDevice = devices.firstObject as AVCaptureDevice!
+                let captureDevice: AVCaptureDevice = devices.firstObject as! AVCaptureDevice!
 
                 return captureDevice // Supposed to be AVCaptureDevicePositionBack
             }

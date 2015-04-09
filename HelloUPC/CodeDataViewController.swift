@@ -16,7 +16,7 @@ class CodeDataViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         barcodeTypeLabel.text = appDelegate.codeRecognizer.type
         barcodeDataLabel.text = appDelegate.codeRecognizer.data
     }
