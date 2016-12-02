@@ -26,7 +26,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         runOnSessionThread(){
@@ -34,7 +34,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         }
     }
 
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         runOnSessionThread(){
             self.captureSession.stopRunning()
         }
@@ -42,7 +42,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         super.viewDidDisappear(animated)
     }
 
-    func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!,fromConnection connection: AVCaptureConnection!) {
+    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!,from connection: AVCaptureConnection!) {
         runOnSessionThread(){
             self.captureSession.stopRunning()
         }
@@ -50,11 +50,11 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
             let object: AVMetadataMachineReadableCodeObject = metadataObjects.first as! AVMetadataMachineReadableCodeObject
             let codeRecognizer = CodeRecognizer(type: object.type, data: object.stringValue)
             runOnMainThread() {
-                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 appDelegate.codeRecognizer = codeRecognizer
                 // println("Barcode Type: \(codeRecognizer.type)")
                 // println("Barcode Data: \(codeRecognizer.data)")
-                self.performSegueWithIdentifier("CoreDataViewController", sender: self)
+                self.performSegue(withIdentifier: "CoreDataViewController", sender: self)
             }
         } else {
             runOnSessionThread(){
@@ -65,7 +65,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
 
     func configure() {
         if let cameraDevice = ViewController.device() {
-            let cameraDeviceInput: AVCaptureInput = AVCaptureDeviceInput.deviceInputWithDevice(cameraDevice, error: NSErrorPointer()) as! AVCaptureInput
+            let cameraDeviceInput: AVCaptureInput = AVCaptureDeviceInput(device:cameraDevice)
 
             if captureSession.canAddInput(cameraDeviceInput) {
                 captureSession.addInput(cameraDeviceInput)
@@ -97,7 +97,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     }
 
     class func device() -> AVCaptureDevice? {
-        if let devices = AVCaptureDevice.devicesWithMediaType(AVMediaTypeVideo) as NSArray! {
+        if let devices = AVCaptureDevice.devices(withMediaType: AVMediaTypeVideo) as NSArray! {
             if devices.count > 0 {
                 let captureDevice: AVCaptureDevice = devices.firstObject as! AVCaptureDevice!
 
@@ -109,7 +109,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     }
 
     func checkDeviceAuthorizationStatus() {
-        AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo){
+        AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo){
             if $0 {
                 runOnSessionThread(){
                     self.cameraView.configure(self.captureSession)

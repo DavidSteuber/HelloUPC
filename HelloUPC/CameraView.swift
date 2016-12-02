@@ -13,12 +13,11 @@ import AVFoundation
 @IBDesignable
 class CameraView: UIView {
 
-    var previewLayer: AVCaptureVideoPreviewLayer = AVCaptureVideoPreviewLayer()
+    func configure(_ captureSession: AVCaptureSession) -> Void {
+        let previewLayer = AVCaptureVideoPreviewLayer(session:captureSession)
 
-    func configure(captureSession: AVCaptureSession) -> Void {
-        previewLayer = AVCaptureVideoPreviewLayer.layerWithSession(captureSession) as! AVCaptureVideoPreviewLayer
-        previewLayer.frame = self.bounds
-        previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
-        self.layer.addSublayer(previewLayer)
+        previewLayer?.frame = self.bounds
+        previewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
+        self.layer.addSublayer(previewLayer!)
     }
 }
